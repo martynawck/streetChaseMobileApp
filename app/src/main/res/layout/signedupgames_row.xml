@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:background="#85748794"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Sample Text"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#ffffff"/>
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            >
+            <ImageButton
+                android:id="@+id/play"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="place"
+                android:background="@drawable/play2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageButton
+                android:id="@+id/cancel"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="where"
+
+                android:background="@drawable/wypisz"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/play"
+                android:layout_toStartOf="@+id/play" />
+            <ImageButton
+                android:id="@+id/maps"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="where"
+
+                android:background="@drawable/maps"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/cancel"
+                android:layout_toStartOf="@+id/cancel" />
+
+            <ImageButton
+                android:id="@+id/calendar"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="where"
+
+                android:background="@drawable/calendar"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/maps"
+                android:layout_toStartOf="@+id/maps" />
+
+            <ImageButton
+                android:id="@+id/time"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="where"
+
+                android:background="@drawable/time"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/calendar"
+                android:layout_toStartOf="@+id/calendar" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

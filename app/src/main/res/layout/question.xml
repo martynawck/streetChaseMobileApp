@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        >
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/question"
+            android:id="@+id/question"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Tutaj wpisujemy treść pytania które chcemy zadać uczestnikowy gry miejskiej"
+            android:textStyle="bold"
+            android:id="@+id/question_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/question"
+            android:layout_marginRight="20dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        >
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/answer"
+            android:id="@+id/time"
+            android:layout_marginLeft="20dp"
+            />
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:id="@+id/answer_text"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/time"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:text="OK"
+        android:textColor="#000000"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+
+        />
+
+
+</LinearLayout>
