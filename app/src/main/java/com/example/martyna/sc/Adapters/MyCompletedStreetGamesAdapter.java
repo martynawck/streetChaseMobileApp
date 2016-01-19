@@ -10,21 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.Models.Subscription;
 import com.example.martyna.sc.Interfaces.OnGetSubscriptionTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetSubscriptionTask;
 import com.example.martyna.sc.Utilities.TimestampManager;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -50,10 +43,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        //      EventHolder holder;
         final StreetGame streetGame = data.get(position);
-     //   progressDialog = new ProgressDialog(context);
-      //  progressDialog.setMessage("Ładowanie gry");
         if(row == null)
 
         {
@@ -75,13 +65,11 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                                     @Override
                                     public void onClick(View v) {
                                         dialog.dismiss();
-                                      //  finish();
                                     }
                                 });
                                 dialog.show();
                             }
-                        }).execute(streetGame.getId());	 // task.runVolley();
-                       // data.remove(position);
+                        }).execute(streetGame.getId());
                         notifyDataSetChanged();
 
 
@@ -152,11 +140,5 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         public EventHolder( View view) {
             ButterKnife.bind(this, view);
         }
-    }
-
-    public void updateReceiptsList(List<StreetGame> newlist) {
-        data.clear();
-        data.addAll(newlist);
-        this.notifyDataSetChanged();
     }
 }

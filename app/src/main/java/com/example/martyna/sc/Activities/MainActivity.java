@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.example.martyna.sc.Fragments.AllStreetGamesFragment;
 import com.example.martyna.sc.Fragments.MyCompletedStreetGamesFragment;
 import com.example.martyna.sc.Fragments.MyPlayedStreetGamesFragment;
@@ -19,14 +18,8 @@ import com.example.martyna.sc.Fragments.MyStreetGamesFragment;
 import com.example.martyna.sc.Interfaces.UpdateFragmentInterface;
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
-//import info.androidhive.materialtabs.R;
-//import info.androidhive.materialtabs.fragments.OneFragment;
-//import info.androidhive.materialtabs.fragments.ThreeFragment;
-//import info.androidhive.materialtabs.fragments.TwoFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         menu.setDisplayShowHomeEnabled(true);
         menu.setLogo(R.drawable.streetchase);
         menu.setDisplayUseLogoEnabled(true);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

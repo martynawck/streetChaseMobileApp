@@ -3,14 +3,12 @@ package com.example.martyna.sc.Tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import com.example.martyna.sc.Utilities.JSONParser;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.Models.Subscription;
 import com.example.martyna.sc.Interfaces.OnGetSubscriptionTaskCompleted;
 import com.example.martyna.sc.R;
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;

@@ -45,22 +45,19 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     String gameId;
-    private int mInterval = 5000; // 5 seconds by default, can be changed later
+    private int mInterval = 5000;
     private final double METERS = 20;
     private Handler mHandler;
     Button start;
     Button abort;
+    Button exit;
     TextView hint;
     GPSTracker gps;
     private ControlPoint currentPoint;
@@ -90,18 +87,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if (gps.checkDistance(new LatLng(currentPoint.getLatitude(), currentPoint.getLongitude()),
                             new LatLng(gps.getLatitude(), gps.getLongitude())) < METERS) {
                         // ukrywamy przycisk
-                        java.util.Date date= new java.util.Date();
+                        java.util.Date date = new java.util.Date();
                         Timestamp now = new Timestamp(date.getTime());
                         new SetGameStartTimeTask(getApplicationContext()).execute(gameId, Long.toString(now.getTime()));
                         startSendingCurrentLocationTask();
                         runIteration();
 
-                    // jeśli nie dostatecznie blisko
+                        // jeśli nie dostatecznie blisko
                     } else
                         Snackbar.make(v, "Nie można rozpocząć gry - znajdujesz się za daleko od miejsca rozpoczęcia gry!", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                 }
-                // startRepeatingTask();
             }
         });
         abort.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +119,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -165,6 +168,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         if (result == "0") {
                             abort.setVisibility(View.VISIBLE);
                             start.setVisibility(View.INVISIBLE);
+                            exit.setVisibility(View.INVISIBLE);
                             dialog.dismiss();
                             java.util.Date date = new java.util.Date();
                             Timestamp now = new Timestamp(date.getTime());
@@ -244,7 +248,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void initializeMap() {
-        Intent intent = getIntent(); // gets the previously created intent
+        Intent intent = getIntent();
         gameId = intent.getStringExtra("game_id");
         currentPoint = new ControlPoint();
         currentPoint.setInitialControlPoint(intent);
@@ -260,6 +264,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mHandler = new Handler();
         start = (Button) findViewById(R.id.start);
         abort = (Button) findViewById(R.id.abort);
+        exit = (Button) findViewById(R.id.exit);
         hint = (TextView) findViewById(R.id.hint);
         abort.setVisibility(View.INVISIBLE);
         hint.setVisibility(View.INVISIBLE);
@@ -284,9 +289,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         progressDialog = new ProgressDialog(MapsActivity.this);
-      //  questionProgress.setMessage("Wczytywanie pytania");
-       // hintProgress = new ProgressDialog(MapsActivity.this);
-   //     hintProgress.setMessage("Wczytywanie podpowiedzi");
     }
 
     public void addInitialMarkerToMap(ControlPoint controlPoint) {
@@ -337,7 +339,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Log.d("Exception", e.getMessage());
                         }
                     }
-                    /// gps.showSettingsAlert();
                     runIteration();
                 }
             }
@@ -360,7 +361,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             } else {
                 gps.showSettingsAlert();
             }
-            //  updateStatus(); //this function can change value of mInterval.
             mHandler.postDelayed(mStatusChecker, mInterval);
         }
     };

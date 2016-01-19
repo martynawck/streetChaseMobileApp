@@ -2,12 +2,10 @@ package com.example.martyna.sc.Tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
 import com.example.martyna.sc.Models.Question;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.Interfaces.OnAnswerTaskCompleted;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;

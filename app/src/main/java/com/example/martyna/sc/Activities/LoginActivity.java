@@ -1,22 +1,13 @@
 package com.example.martyna.sc.Activities;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.EditText;
-
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.AuthenticationTask;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -58,32 +49,5 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onResume();
     }
-
-    public void showAlert(){
-        LoginActivity.this.runOnUiThread(new Runnable() {
-            public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle(getString(R.string.login_error_title));
-                builder.setMessage(getString(R.string.user_not_found))
-                        .setCancelable(false)
-                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void StartAsyncTaskInParallel(AsyncTask task) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        else
-            task.execute();
-    }
-
-
 }
 

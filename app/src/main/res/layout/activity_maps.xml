@@ -36,6 +36,20 @@
         android:id="@+id/abort"
         android:paddingRight="10dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:text="Wyjdź"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:padding="10dp"
+        android:id="@+id/exit"
+        android:paddingRight="10dp"
+        android:layout_alignTop="@+id/abort"
+        android:layout_toRightOf="@+id/abort"
+        android:layout_toEndOf="@+id/abort" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

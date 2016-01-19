@@ -56,7 +56,7 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.join.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new SubscribeToGameTask(context).execute(streetGame.getId());	 // task.runVolley();
+                        new SubscribeToGameTask(context).execute(streetGame.getId());
                         data.remove(position);
                         notifyDataSetChanged();
                     }
@@ -94,7 +94,6 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
             holder.maps.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Date date = streetGame.getStartTime();
 
                     try {
                         Snackbar.make(v, "Miejsce rozpoczęcia gry to: "+streetGame.getStartPointDescription(), Snackbar.LENGTH_LONG)

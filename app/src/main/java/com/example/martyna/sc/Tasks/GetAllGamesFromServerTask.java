@@ -3,14 +3,12 @@ package com.example.martyna.sc.Tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import com.example.martyna.sc.Utilities.JSONParser;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.Interfaces.OnEventTaskCompleted;
 import com.example.martyna.sc.R;
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -21,7 +19,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,7 +60,7 @@ public class GetAllGamesFromServerTask extends AsyncTask<Void, Void, String> {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
-                    StreetGame e = JSONParser.JSONToPartner(jsonObject);//.JSONToEvent(jsonObject);
+                    StreetGame e = JSONParser.JSONToPartner(jsonObject);
                     streetGames.add(e);
                 }
 

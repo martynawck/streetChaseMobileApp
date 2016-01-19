@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,9 +15,7 @@ import com.example.martyna.sc.Activities.MainActivity;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.R;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 

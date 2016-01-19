@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.example.martyna.sc.Activities.MapsActivity;
 import com.example.martyna.sc.Models.ControlPoint;
 import com.example.martyna.sc.Models.StreetGame;
@@ -20,12 +19,8 @@ import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetInitialControlPoint;
 import com.example.martyna.sc.Tasks.UnsubscribeFromGameTask;
 import com.example.martyna.sc.Utilities.TimestampManager;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
@@ -51,12 +46,8 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        //      EventHolder holder;
         final StreetGame streetGame = data.get(position);
-     //   progressDialog = new ProgressDialog(context);
-      //  progressDialog.setMessage("Ładowanie gry");
         if(row == null)
-
         {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             row = inflater.inflate(layoutResourceId, parent, false);
@@ -66,11 +57,9 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new UnsubscribeFromGameTask(context).execute(streetGame.getId());	 // task.runVolley();
+                        new UnsubscribeFromGameTask(context).execute(streetGame.getId());
                         data.remove(position);
                         notifyDataSetChanged();
-
-
                     }
                 });
             }catch (Exception e) {
@@ -111,14 +100,9 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
 
                     if (startdate.getTime() <= time && enddate.getTime() >= time) {
                     progressDialog.show();
-                            /*Snackbar.make(v, "PLAY!!!!", Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
-*/
-                      //  progressDialog.show();
                         new GetInitialControlPoint(context, new OnControlPointTaskCompleted() {
                             @Override
                             public void onControlPointReturned(ControlPoint controlPoint) {
-                        //        progressDialog.dismiss();
                                 Intent i = new Intent(activity, MapsActivity.class);
                                 i.putExtra("game_id", streetGame.getId());
                                 i.putExtra("id", controlPoint.getId());
@@ -176,11 +160,5 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         public EventHolder( View view) {
             ButterKnife.bind(this, view);
         }
-    }
-
-    public void updateReceiptsList(List<StreetGame> newlist) {
-        data.clear();
-        data.addAll(newlist);
-        this.notifyDataSetChanged();
     }
 }

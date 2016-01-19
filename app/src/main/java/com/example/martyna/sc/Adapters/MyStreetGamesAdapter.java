@@ -1,37 +1,22 @@
 package com.example.martyna.sc.Adapters;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.media.Image;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.DeleteGameTask;
-import com.example.martyna.sc.Tasks.UnsubscribeFromGameTask;
 import com.example.martyna.sc.Utilities.TimestampManager;
-import com.squareup.picasso.Picasso;
-
-import java.io.Console;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-
 import butterknife.ButterKnife;
 import butterknife.Bind;
-import butterknife.OnClick;
 
 public class MyStreetGamesAdapter extends ArrayAdapter<StreetGame> {
     private final int layoutResourceId;

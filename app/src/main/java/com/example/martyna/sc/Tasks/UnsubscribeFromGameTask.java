@@ -1,22 +1,14 @@
 package com.example.martyna.sc.Tasks;
 
-/**
- * Created by Martyna on 2016-01-13.
- */
-
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.IOException;
 
 /**
@@ -40,14 +32,7 @@ public class UnsubscribeFromGameTask extends AsyncTask<String, Void, String> {
             HttpDelete httpDelete = new HttpDelete(ServerUrl.BASE_URL+"mobile/games/subscription/"+sessionManager.getValueOfUserId()+"/"+urls[0]);
 
             try {
-                // create a list to store HTTP variables and their values
-                // List nameValuePairs = new ArrayList();
-                // add an HTTP variable and value pair
-                // nameValuePairs.add(new BasicNameValuePair("myHttpData", valueIwantToSend));
-                // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                // send the variable and value, in other words post, to the URL
                 HttpResponse response = hc.execute(httpDelete);
-                Log.d(":A", response.getStatusLine().toString());
 
             } catch (ClientProtocolException e) {
                 // process execption
