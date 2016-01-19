@@ -1,6 +1,5 @@
 package com.example.martyna.sc.Models;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**

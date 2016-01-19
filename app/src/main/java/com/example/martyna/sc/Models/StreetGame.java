@@ -8,6 +8,15 @@ import java.util.Date;
  */
 public class StreetGame implements  Comparable<StreetGame> {
 
+    private Date endTime;
+    private String ownerId;
+    private String imageUrl;
+    private String id;
+    private String gameName;
+    private String description;
+    private String placeName;
+    private Date startTime;
+
     public String getId() {
         return id;
     }
@@ -48,7 +57,6 @@ public class StreetGame implements  Comparable<StreetGame> {
         this.placeName = place;
     }
 
-
     public String getGameName() {
         return gameName;
     }
@@ -57,9 +65,6 @@ public class StreetGame implements  Comparable<StreetGame> {
         this.gameName = name;
     }
 
-    private String id;
-    private String gameName;
-
     public String getDescription() {
         return description;
     }
@@ -67,10 +72,6 @@ public class StreetGame implements  Comparable<StreetGame> {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    private String description;
-    private String placeName;
-    private Date startTime;
 
     public String getStartPointDescription() {
         return startPointDescription;
@@ -89,13 +90,6 @@ public class StreetGame implements  Comparable<StreetGame> {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
-
-    private Date endTime;
-    private String ownerId;
-    private String imageUrl;
-
-
-
 
     @Override
     public int compareTo(StreetGame o) {

@@ -16,6 +16,7 @@ import com.example.martyna.sc.Models.Subscription;
 import com.example.martyna.sc.Interfaces.OnGetSubscriptionTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetSubscriptionTask;
+import com.example.martyna.sc.Utilities.TimestampManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
     EventHolder holder;
     private Activity activity;
     ProgressDialog progressDialog;
+    TimestampManager timestampManager;
 
     public MyCompletedStreetGamesAdapter(Activity activity, ProgressDialog progressDialog, Context context, int layoutResourceId, ArrayList<StreetGame> data) {
         super(context, layoutResourceId, data);
@@ -42,6 +44,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         this.data = data;
         this.activity = activity;
         this.progressDialog = progressDialog;
+        timestampManager = new TimestampManager();
     }
 
     @Override
@@ -67,7 +70,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                             public void onGetSubscription(Subscription subscription) {
                                 final ResultGameDialog dialog = new ResultGameDialog(activity);
                                 Long difference = subscription.getGame_finished().getTime() - subscription.getGame_started().getTime();
-                                dialog.result.setText(toTime(oneHourBack(difference)));
+                                dialog.result.setText(timestampManager.toTime(timestampManager.oneHourBack(difference)));
                                 dialog.button.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -93,7 +96,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                     Date date = streetGame.getStartTime();
 
                     try {
-                        Snackbar.make(v, "Dzień rozpoczęcia gry to: "+ toDate(date.getTime()), Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, "Dzień rozpoczęcia gry to: "+ timestampManager.toDate(date.getTime()), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     catch (Exception e) {
@@ -106,7 +109,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                     Date date = streetGame.getStartTime();
 
                     try {
-                        Snackbar.make(v, "Czas rozpoczęcia gry to: "+ toTime(date.getTime()), Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, "Czas rozpoczęcia gry to: "+ timestampManager.toTime(date.getTime()), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     catch (Exception e) {
@@ -139,31 +142,6 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         return row;
     }
 
-    private String toTime(long timestamp) {
-        Date date = new Date (timestamp);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
-        return sdf.format(date);
-    }
-
-    private long oneHourBack (long timestamp) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date(timestamp));
-        cal.add(Calendar.HOUR, -1);
-        Date oneHourBack = cal.getTime();
-        return oneHourBack.getTime();
-    }
-
-    private String toDate(long timestamp) {
-        Date date = new Date (timestamp);
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
-    }
-/*
-    private String toTime(long timestamp) {
-        Date date = new Date (timestamp);
-        return new SimpleDateFormat("HH:mm:ss").format(date);
-    }
-*/
     static class EventHolder {
         @Bind(R.id.name) TextView name;
         @Bind(R.id.result) ImageButton result;

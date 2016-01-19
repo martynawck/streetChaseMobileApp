@@ -7,18 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.martyna.sc.Interfaces.UpdateFragmentInterface;
 import com.example.martyna.sc.Adapters.MyStreetGamesAdapter;
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.Interfaces.OnEventTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetMyGamesFromServerTask;
-
 import java.util.ArrayList;
-
-//import info.androidhive.materialtabs.R;
-
 
 public class MyStreetGamesFragment extends Fragment implements UpdateFragmentInterface {
 
@@ -27,7 +22,6 @@ public class MyStreetGamesFragment extends Fragment implements UpdateFragmentInt
     TextView noGames;
 
     public MyStreetGamesFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -38,8 +32,7 @@ public class MyStreetGamesFragment extends Fragment implements UpdateFragmentInt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        // Get ListView object from xml
+
         View rootView = inflater.inflate(R.layout.fragment_mygames, container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
         noGames = (TextView) rootView.findViewById(R.id.noGames);

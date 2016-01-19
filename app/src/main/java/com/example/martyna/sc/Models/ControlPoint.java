@@ -7,6 +7,14 @@ import android.content.Intent;
  */
 public class ControlPoint {
 
+    private String name;
+    private int next_point_id;
+    private double latitude;
+    private double longitude;
+    private boolean starting_point;
+    private int id;
+    private int street_game_id;
+    private String hint;
 
     public String getName() {
         return name;
@@ -64,7 +72,6 @@ public class ControlPoint {
         this.starting_point = starting_point;
     }
 
-
     public String getHint() {
         return hint;
     }
@@ -73,26 +80,15 @@ public class ControlPoint {
         this.hint = hint;
     }
 
-    private String name;
-    private int next_point_id;
-    private double latitude;
-    private double longitude;
-    private boolean starting_point;
-    private int id;
-    private int street_game_id;
-    private String hint;
-
     public void setInitialControlPoint(Intent intent) {
-        //ControlPoint controlPoint = new ControlPoint();
-       // intent = getIntent(); // gets the previously created intent
-        //gameId = intent.getStringExtra("game_id");
+
         this.setLongitude(intent.getDoubleExtra("control_point_longitude", 0));
         this.setLatitude(intent.getDoubleExtra("control_point_latitude", 0));
         this.setName(intent.getStringExtra("control_point_name"));
         this.setNext_point_id(intent.getIntExtra("control_point_next", 0));
         this.setStreet_game_id(Integer.parseInt(intent.getStringExtra("game_id")));
         this.setId(intent.getIntExtra("id", 0));
-        //return controlPoint;
+
     }
 
 }

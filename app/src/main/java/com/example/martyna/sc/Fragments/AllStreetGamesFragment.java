@@ -7,18 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.martyna.sc.Interfaces.UpdateFragmentInterface;
 import com.example.martyna.sc.Adapters.AllStreetGamesAdapter;
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.Interfaces.OnEventTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetAllGamesFromServerTask;
-
 import java.util.ArrayList;
-
-//import info.androidhive.materialtabs.R;
-
 
 public class AllStreetGamesFragment extends Fragment implements UpdateFragmentInterface {
 
@@ -27,7 +22,6 @@ public class AllStreetGamesFragment extends Fragment implements UpdateFragmentIn
     private ArrayList<StreetGame> list = new ArrayList<>();
 
     public AllStreetGamesFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -38,16 +32,11 @@ public class AllStreetGamesFragment extends Fragment implements UpdateFragmentIn
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        // Get ListView object from xml
         View rootView = inflater.inflate(R.layout.fragment_mygames, container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
         noGames = (TextView) rootView.findViewById(R.id.noGames);
         noGames.setVisibility(View.INVISIBLE);
         updateFragment();
-
-
-// Adding button to listview at footer
 
         return rootView;
     }
@@ -63,7 +52,6 @@ public class AllStreetGamesFragment extends Fragment implements UpdateFragmentIn
                     noGames.setVisibility(View.VISIBLE);
                 if (!list.isEmpty())
                     noGames.setVisibility(View.INVISIBLE);
-
             }
         }).execute();
     }

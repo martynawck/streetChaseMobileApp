@@ -14,6 +14,7 @@ import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.SubscribeToGameTask;
+import com.example.martyna.sc.Utilities.TimestampManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
     EventHolder holder;
     private Activity activity;
     SessionManager sessionManager;
+    TimestampManager timestampManager;
 
     public AllStreetGamesAdapter(Activity activity, Context context, int layoutResourceId, ArrayList<StreetGame> data) {
         super(context, layoutResourceId, data);
@@ -36,6 +38,7 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         this.activity = activity;
         this.layoutResourceId = layoutResourceId;
         this.data = data;
+        timestampManager = new TimestampManager();
     }
 
     @Override
@@ -67,7 +70,7 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                     Date date = streetGame.getStartTime();
 
                     try {
-                        Snackbar.make(v, "Dzień rozpoczęcia gry to: "+ toDate(date.getTime()), Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, "Dzień rozpoczęcia gry to: "+ timestampManager.toDate(date.getTime()), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     catch (Exception e) {
@@ -80,7 +83,7 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                     Date date = streetGame.getStartTime();
 
                     try {
-                        Snackbar.make(v, "Czas rozpoczęcia gry to: "+ toTime(date.getTime()), Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, "Czas rozpoczęcia gry to: "+ timestampManager.toTime(date.getTime()), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     catch (Exception e) {
@@ -113,15 +116,6 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
         return row;
     }
 
-    private String toDate(long timestamp) {
-        Date date = new Date (timestamp);
-        return new SimpleDateFormat("yyyy-MM-dd").format(date);
-    }
-
-    private String toTime(long timestamp) {
-        Date date = new Date (timestamp);
-        return new SimpleDateFormat("HH:mm:ss").format(date);
-    }
 
     static class EventHolder {
         @Bind(R.id.name) TextView name;

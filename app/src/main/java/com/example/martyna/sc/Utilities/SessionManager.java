@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
  * Created by Martyna on 2015-03-20.
  */
 public class SessionManager {
+
     private final SharedPreferences _sharedPreferences;
     private final SharedPreferences.Editor _editor;
     private static final String SESSION_NAME = "STREET_CHASE";

@@ -34,6 +34,7 @@ import com.example.martyna.sc.Tasks.SendUserLocationTask;
 import com.example.martyna.sc.Tasks.SetGameAsPlayedTask;
 import com.example.martyna.sc.Tasks.SetGameEndTimeTask;
 import com.example.martyna.sc.Tasks.SetGameStartTimeTask;
+import com.example.martyna.sc.Utilities.TimestampManager;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -67,13 +68,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Thread checkDistanceThread = null;
     private HashMap<Marker, ArrayList<String>> markersHashMap;
     ProgressDialog progressDialog;
+    TimestampManager timestampManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        timestampManager = new TimestampManager();
         initializeMap();
 
 
@@ -164,9 +166,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             abort.setVisibility(View.VISIBLE);
                             start.setVisibility(View.INVISIBLE);
                             dialog.dismiss();
-                            java.util.Date date= new java.util.Date();
+                            java.util.Date date = new java.util.Date();
                             Timestamp now = new Timestamp(date.getTime());
-                            new SaveReachedControlPointTask(getApplicationContext()).execute(Integer.toString(currentPoint.getId()),Long.toString(now.getTime()));
+                            new SaveReachedControlPointTask(getApplicationContext()).execute(Integer.toString(currentPoint.getId()), Long.toString(now.getTime()));
                             // pobieray nowy punkt
                             progressDialog.setMessage("Pobieranie podpowiedzi");
                             progressDialog.show();
@@ -227,7 +229,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 progressDialog.dismiss();
                 Long difference = subscription.getGame_finished().getTime() - subscription.getGame_started().getTime();
                 final FinishedGameDialog dialog = new FinishedGameDialog(MapsActivity.this);
-                dialog.result.setText(toTime(oneHourBack(difference)));
+                dialog.result.setText(timestampManager.toTime(timestampManager.oneHourBack(difference)));
                 dialog.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -313,20 +315,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
     }
 
-    private String toTime(long timestamp) {
-        Date date = new Date (timestamp);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
-        return sdf.format(date);
-    }
-
-    private long oneHourBack (long timestamp) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date(timestamp));
-        cal.add(Calendar.HOUR, -1);
-        Date oneHourBack = cal.getTime();
-        return oneHourBack.getTime();
-    }
 
 
     /***** THREADS */
