@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.example.martyna.sc.Activities.MapsActivity;
 import com.example.martyna.sc.Models.ControlPoint;
 import com.example.martyna.sc.Models.StreetGame;
-import com.example.martyna.sc.OnControlPointTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnControlPointTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetInitialControlPoint;
 import com.example.martyna.sc.Tasks.UnsubscribeFromGameTask;

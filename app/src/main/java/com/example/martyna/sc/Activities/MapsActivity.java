@@ -1,34 +1,28 @@
 package com.example.martyna.sc.Activities;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.martyna.sc.Adapters.FinishedGameDialog;
 import com.example.martyna.sc.Adapters.QuestionDialog;
-import com.example.martyna.sc.GPS.GPSTracker;
+import com.example.martyna.sc.Utilities.GPSTracker;
 import com.example.martyna.sc.Models.ControlPoint;
 import com.example.martyna.sc.Models.Question;
 import com.example.martyna.sc.Models.Subscription;
-import com.example.martyna.sc.OnAnswerTaskCompleted;
-import com.example.martyna.sc.OnControlPointTaskCompleted;
-import com.example.martyna.sc.OnGetSubscriptionTaskCompleted;
-import com.example.martyna.sc.OnQuestionTaskCompleted;
-import com.example.martyna.sc.OnRollbackTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnAnswerTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnControlPointTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnGetSubscriptionTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnQuestionTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnRollbackTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetAnswerTask;
 import com.example.martyna.sc.Tasks.GetControlPointTask;
@@ -55,11 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.TimeZone;
-
-import butterknife.ButterKnife;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 

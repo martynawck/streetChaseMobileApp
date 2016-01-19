@@ -1,4 +1,4 @@
-package com.example.martyna.sc.GPS;
+package com.example.martyna.sc.Utilities;
 
 import android.app.Service;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.provider.Settings;

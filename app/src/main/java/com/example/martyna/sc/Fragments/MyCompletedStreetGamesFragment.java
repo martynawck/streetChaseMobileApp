@@ -9,21 +9,19 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.martyna.sc.Activities.YourFragmentInterface;
+import com.example.martyna.sc.Interfaces.UpdateFragmentInterface;
 import com.example.martyna.sc.Adapters.MyCompletedStreetGamesAdapter;
-import com.example.martyna.sc.Adapters.MyPlayedStreetGamesAdapter;
 import com.example.martyna.sc.Models.StreetGame;
-import com.example.martyna.sc.OnEventTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnEventTaskCompleted;
 import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetMyCompletedStreetGamesServerTask;
-import com.example.martyna.sc.Tasks.GetMyPlayedStreetGamesServerTask;
 
 import java.util.ArrayList;
 
 //import info.androidhive.materialtabs.R;
 
 
-public class MyCompletedStreetGamesFragment extends Fragment implements YourFragmentInterface {
+public class MyCompletedStreetGamesFragment extends Fragment implements UpdateFragmentInterface {
 
     ListView listView;
     private ArrayList<StreetGame> list = new ArrayList<>();

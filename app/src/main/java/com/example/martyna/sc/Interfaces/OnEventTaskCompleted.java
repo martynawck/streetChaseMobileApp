@@ -1,4 +1,4 @@
-package com.example.martyna.sc;
+package com.example.martyna.sc.Interfaces;
 
 import com.example.martyna.sc.Models.ControlPoint;
 import com.example.martyna.sc.Models.Question;

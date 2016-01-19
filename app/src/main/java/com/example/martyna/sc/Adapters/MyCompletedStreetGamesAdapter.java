@@ -3,7 +3,6 @@ package com.example.martyna.sc.Adapters;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.martyna.sc.Activities.MainActivity;
-import com.example.martyna.sc.Activities.MapsActivity;
-import com.example.martyna.sc.Models.ControlPoint;
 import com.example.martyna.sc.Models.StreetGame;
 import com.example.martyna.sc.Models.Subscription;
-import com.example.martyna.sc.OnControlPointTaskCompleted;
-import com.example.martyna.sc.OnGetSubscriptionTaskCompleted;
+import com.example.martyna.sc.Interfaces.OnGetSubscriptionTaskCompleted;
 import com.example.martyna.sc.R;
-import com.example.martyna.sc.Tasks.GetInitialControlPoint;
 import com.example.martyna.sc.Tasks.GetSubscriptionTask;
-import com.example.martyna.sc.Tasks.UnsubscribeFromGameTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

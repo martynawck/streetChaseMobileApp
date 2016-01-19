@@ -1,4 +1,4 @@
-package com.example.martyna.sc.Models;
+package com.example.martyna.sc.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

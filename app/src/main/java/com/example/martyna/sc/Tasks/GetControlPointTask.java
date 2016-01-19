@@ -4,13 +4,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.martyna.sc.JSONParser;
+import com.example.martyna.sc.Utilities.JSONParser;
 import com.example.martyna.sc.Models.ControlPoint;
-import com.example.martyna.sc.Models.ServerUrl;
-import com.example.martyna.sc.Models.SessionManager;
-import com.example.martyna.sc.Models.StreetGame;
-import com.example.martyna.sc.OnControlPointTaskCompleted;
-import com.example.martyna.sc.OnEventTaskCompleted;
+import com.example.martyna.sc.Utilities.ServerUrl;
+import com.example.martyna.sc.Utilities.SessionManager;
+import com.example.martyna.sc.Interfaces.OnControlPointTaskCompleted;
 import com.example.martyna.sc.R;
 
 import org.apache.http.client.HttpClient;
@@ -21,12 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by Martyna on 2016-01-18.

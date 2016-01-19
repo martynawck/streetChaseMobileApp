@@ -2,26 +2,19 @@ package com.example.martyna.sc.Tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
-import com.example.martyna.sc.JSONParser;
 import com.example.martyna.sc.Models.Question;
-import com.example.martyna.sc.Models.ServerUrl;
-import com.example.martyna.sc.Models.SessionManager;
-import com.example.martyna.sc.OnAnswerTaskCompleted;
-import com.example.martyna.sc.OnQuestionTaskCompleted;
-import com.example.martyna.sc.R;
+import com.example.martyna.sc.Utilities.ServerUrl;
+import com.example.martyna.sc.Utilities.SessionManager;
+import com.example.martyna.sc.Interfaces.OnAnswerTaskCompleted;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONObject;
 
 /**
  * Created by Martyna on 2016-01-18.

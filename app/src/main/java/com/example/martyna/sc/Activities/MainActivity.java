@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,11 +13,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.martyna.sc.Fragments.AllStreetGamesFragment;
-import com.example.martyna.sc.Fragments.HelpFragment;
 import com.example.martyna.sc.Fragments.MyCompletedStreetGamesFragment;
 import com.example.martyna.sc.Fragments.MyPlayedStreetGamesFragment;
 import com.example.martyna.sc.Fragments.MyStreetGamesFragment;
-import com.example.martyna.sc.Models.SessionManager;
+import com.example.martyna.sc.Interfaces.UpdateFragmentInterface;
+import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.R;
 
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(final int i) {
-                YourFragmentInterface fragment = (YourFragmentInterface) adapter.instantiateItem(viewPager, i);
+                UpdateFragmentInterface fragment = (UpdateFragmentInterface) adapter.instantiateItem(viewPager, i);
                 if (fragment != null) {
                     fragment.updateFragment();
                 }

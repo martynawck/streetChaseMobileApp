@@ -13,8 +13,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.martyna.sc.Activities.MainActivity;
-import com.example.martyna.sc.Models.ServerUrl;
-import com.example.martyna.sc.Models.SessionManager;
+import com.example.martyna.sc.Utilities.ServerUrl;
+import com.example.martyna.sc.Utilities.SessionManager;
 import com.example.martyna.sc.R;
 
 import org.json.JSONObject;

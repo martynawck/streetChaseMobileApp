@@ -4,9 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.martyna.sc.Models.ServerUrl;
-import com.example.martyna.sc.Models.SessionManager;
-import com.example.martyna.sc.Models.StreetGame;
+import com.example.martyna.sc.Utilities.ServerUrl;
+import com.example.martyna.sc.Utilities.SessionManager;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

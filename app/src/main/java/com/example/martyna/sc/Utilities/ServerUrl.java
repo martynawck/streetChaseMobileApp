@@ -1,4 +1,4 @@
-package com.example.martyna.sc.Models;
+package com.example.martyna.sc.Utilities;
 /**
  * Created by Martyna on 2015-03-14.
  */

@@ -5,9 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.martyna.sc.Models.ServerUrl;
-import com.example.martyna.sc.Models.SessionManager;
-import com.example.martyna.sc.OnRollbackTaskCompleted;
+import com.example.martyna.sc.Utilities.ServerUrl;
+import com.example.martyna.sc.Utilities.SessionManager;
+import com.example.martyna.sc.Interfaces.OnRollbackTaskCompleted;
 import com.example.martyna.sc.R;
 
 import org.apache.http.HttpResponse;

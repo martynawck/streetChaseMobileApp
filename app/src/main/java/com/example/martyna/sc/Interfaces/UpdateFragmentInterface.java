@@ -1,4 +1,4 @@
-package com.example.martyna.sc.Activities;
+package com.example.martyna.sc.Interfaces;
 
 import android.app.ProgressDialog;
 import android.view.View;
@@ -6,6 +6,6 @@ import android.view.View;
 /**
  * Created by Martyna on 2016-01-14.
  */
-public interface YourFragmentInterface {
+public interface UpdateFragmentInterface {
     void updateFragment();
 }

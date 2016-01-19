@@ -1,4 +1,4 @@
-package com.example.martyna.sc;
+package com.example.martyna.sc.Interfaces;
 
 /**
  * Created by Martyna on 2016-01-12.
