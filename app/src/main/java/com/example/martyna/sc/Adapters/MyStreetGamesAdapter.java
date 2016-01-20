@@ -49,7 +49,8 @@ public class MyStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new DeleteGameTask(context).execute(streetGame.getId());	 // task.runVolley();
+                        DeleteGameTask task = new DeleteGameTask(context, streetGame.getId());//.execute(streetGame.getId());	 // task.runVolley();
+                        task.runVolley();
                         data.remove(position);
                         notifyDataSetChanged();
 

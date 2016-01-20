@@ -56,7 +56,8 @@ public class AllStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.join.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new SubscribeToGameTask(context).execute(streetGame.getId());
+                        SubscribeToGameTask task = new SubscribeToGameTask(context, streetGame.getId());//.execute(streetGame.getId());
+                        task.runVolley();
                         data.remove(position);
                         notifyDataSetChanged();
                     }

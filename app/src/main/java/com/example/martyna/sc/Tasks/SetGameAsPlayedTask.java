@@ -1,52 +1,51 @@
 package com.example.martyna.sc.Tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import java.io.IOException;
 
 /**
  * Created by Martyna on 2016-01-19.
  */
-public class SetGameAsPlayedTask extends AsyncTask<String, Void, String> {
+public class SetGameAsPlayedTask /*extends AsyncTask<String, Void, String>*/ {
 
     private final Context mContext;
     SessionManager sessionManager;
+    private String urls = "";
 
-    public SetGameAsPlayedTask ( Context context) {
+    public SetGameAsPlayedTask ( Context context, String urls) {
         this.mContext = context;
         sessionManager = new SessionManager(mContext);
+        this.urls = urls;
     }
 
+    public void runVolley() {
 
-    protected String doInBackground(String... urls) {
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            // specify the URL you want to post to
-            HttpPost httppost = new HttpPost(ServerUrl.BASE_URL+"mobile/games/subscription/played/"+sessionManager.getValueOfUserId()+"/"+urls[0]);
-            try {
-                HttpResponse response = httpclient.execute(httppost);
-                Log.d(":A", response.getStatusLine().toString());
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url = ServerUrl.BASE_URL+"mobile/games/subscription/played/"+sessionManager.getValueOfUserId()+"/"+urls;
+        StringRequest dr = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
 
-            } catch (ClientProtocolException e) {
-                // process execption
-            } catch (IOException e) {
-                // process execption
-            }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error.
 
-        } catch (Exception e) {
-            System.out.println("Exception : " + e.getMessage());
-        }
-        return "-1";
-    }
-
-    protected void onPostExecute(String result) {
+                    }
+                }
+        );
+        queue.add(dr);
     }
 }

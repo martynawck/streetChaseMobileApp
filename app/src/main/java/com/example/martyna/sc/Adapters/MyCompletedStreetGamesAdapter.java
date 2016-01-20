@@ -55,7 +55,7 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.result.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new GetSubscriptionTask(context, new OnGetSubscriptionTaskCompleted() {
+                        GetSubscriptionTask task = new GetSubscriptionTask(context, new OnGetSubscriptionTaskCompleted() {
                             @Override
                             public void onGetSubscription(Subscription subscription) {
                                 final ResultGameDialog dialog = new ResultGameDialog(activity);
@@ -69,7 +69,8 @@ public class MyCompletedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                                 });
                                 dialog.show();
                             }
-                        }).execute(streetGame.getId());
+                        },streetGame.getId());//.execute(streetGame.getId());
+                        task.runVolley();
                         notifyDataSetChanged();
 
 

@@ -1,58 +1,53 @@
 package com.example.martyna.sc.Tasks;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.martyna.sc.Utilities.ServerUrl;
 import com.example.martyna.sc.Utilities.SessionManager;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import java.io.IOException;
 
 /**
  * Created by Martyna on 2016-01-19.
  */
-public class SaveReachedControlPointTask extends AsyncTask<String, Void, String> {
+public class SaveReachedControlPointTask {
 
     private final Context mContext;
     SessionManager sessionManager;
+    private String[] urls;
 
-    public SaveReachedControlPointTask ( Context context) {
+    public SaveReachedControlPointTask ( Context context, String[] urls) {
         this.mContext = context;
         sessionManager = new SessionManager(mContext);
+        this.urls = urls;
     }
 
+    public void runVolley() {
 
-    protected String doInBackground(String... urls) {
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            // specify the URL you want to post to
-            HttpPost httppost = new HttpPost(ServerUrl.BASE_URL+"mobile/user_reached_point/"+sessionManager.getValueOfUserId()+"/"+urls[0]+"/"+urls[1]);
-            try {
-                // create a list to store HTTP variables and their values
-                // List nameValuePairs = new ArrayList();
-                // add an HTTP variable and value pair
-                // nameValuePairs.add(new BasicNameValuePair("myHttpData", valueIwantToSend));
-                // httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                // send the variable and value, in other words post, to the URL
-                HttpResponse response = httpclient.execute(httppost);
-                Log.d(":A", response.getStatusLine().toString());
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url = ServerUrl.BASE_URL+"mobile/user_reached_point/"+sessionManager.getValueOfUserId()+"/"+urls[0]+"/"+urls[1];
+        StringRequest dr = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        // Toast.makeText($this, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error.
 
-            } catch (ClientProtocolException e) {
-                // process execption
-            } catch (IOException e) {
-                // process execption
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception : " + e.getMessage());
-        }
-        return "-1";
+                    }
+                }
+        );
+        queue.add(dr);
     }
 
-    protected void onPostExecute(String result) {
-    }
 }

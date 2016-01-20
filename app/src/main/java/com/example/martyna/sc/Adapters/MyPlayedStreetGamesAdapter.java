@@ -57,7 +57,8 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                 holder.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new UnsubscribeFromGameTask(context).execute(streetGame.getId());
+                        UnsubscribeFromGameTask task = new UnsubscribeFromGameTask(context,streetGame.getId());//.execute(streetGame.getId());
+                        task.runVolley();
                         data.remove(position);
                         notifyDataSetChanged();
                     }
@@ -100,7 +101,7 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
 
                     if (startdate.getTime() <= time && enddate.getTime() >= time) {
                     progressDialog.show();
-                        new GetInitialControlPoint(context, new OnControlPointTaskCompleted() {
+                        GetInitialControlPoint gictp = new GetInitialControlPoint(context, new OnControlPointTaskCompleted() {
                             @Override
                             public void onControlPointReturned(ControlPoint controlPoint) {
                                 Intent i = new Intent(activity, MapsActivity.class);
@@ -113,7 +114,9 @@ public class MyPlayedStreetGamesAdapter extends ArrayAdapter<StreetGame> {
                                 activity.startActivity(i);
                                 progressDialog.dismiss();
                             }
-                        }).execute(streetGame.getId());
+                        },streetGame.getId());
+                        gictp.runVolley();
+                        //.execute(streetGame.getId());
 
 
                     } else {

@@ -3,6 +3,13 @@ package com.example.martyna.sc.Tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.martyna.sc.Utilities.JSONParser;
 import com.example.martyna.sc.Models.Question;
 import com.example.martyna.sc.Utilities.ServerUrl;
@@ -22,49 +29,52 @@ import org.json.JSONObject;
 /**
  * Created by Martyna on 2016-01-18.
  */
-public class GetQuestionTask extends AsyncTask<String, Void, String> {
+public class GetQuestionTask {
 
     private final OnQuestionTaskCompleted listener;
     private final Context mContext;
     SessionManager sessionManager;
     Question question;
+    String urls;
 
-    public GetQuestionTask(Context context, OnQuestionTaskCompleted listener) {
+    public GetQuestionTask(Context context, OnQuestionTaskCompleted listener, String urls) {
         this.listener = listener;
         this.mContext = context;
         sessionManager = new SessionManager(mContext);
+        this.urls = urls;
     }
 
+    public void runVolley() {
 
-    protected String doInBackground(String... urls) {
-        try {
-            String uri = "mobile/question/control_point/"+urls[0];
-            HttpParams httpParameters = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParameters, 5000);
-            HttpConnectionParams.setSoTimeout(httpParameters, 10000);
-            HttpClient httpclient = new DefaultHttpClient(httpParameters);
-            HttpGet httpget = new HttpGet(ServerUrl.BASE_URL + uri);
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String response = httpclient.execute(httpget, responseHandler);
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        String url = ServerUrl.BASE_URL+"mobile/question/control_point/"+urls;
+        StringRequest dr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if (!response.equalsIgnoreCase("null")) {
+                                JSONObject jsonObject = new JSONObject(response);
+                                question = JSONParser.JSONToQuestion(jsonObject);
+                                listener.onQuestionReturned(question);
+                            }
 
-            if (!response.equalsIgnoreCase("null")) {
-                JSONObject jsonObject = new JSONObject(response);
-                question = JSONParser.JSONToQuestion(jsonObject);
+                        }catch (Exception e) {
+                            Toast.makeText(mContext, mContext.getString(R.string.mygames_error), Toast.LENGTH_LONG).show();
 
-                return "0";
-            }
-        } catch (Exception e) {
-            System.out.println("Exception : " + e.getMessage());
-        }
-        return "-1";
-    }
-
-    protected void onPostExecute(String result) {
-
-        if (result.equals("0")) {
-            listener.onQuestionReturned(question);
-        } else {
-            Toast.makeText(mContext, mContext.getString(R.string.mygames_error), Toast.LENGTH_LONG).show();
-        }
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error.
+                        Toast.makeText(mContext, mContext.getString(R.string.mygames_error), Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        queue.add(dr);
     }
 }
