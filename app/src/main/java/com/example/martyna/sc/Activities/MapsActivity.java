@@ -50,6 +50,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.Bind;
+import butterknife.BindDimen;
+import butterknife.ButterKnife;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -57,10 +61,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private int mInterval = 5000;
     private final double METERS = 20;
     private Handler mHandler;
-    Button start;
-    Button abort;
-    Button exit;
-    TextView hint;
+
+    @Bind(R.id.start) Button start;
+    @Bind(R.id.abort) Button abort;
+    @Bind(R.id.exit) Button exit;
+    @Bind(R.id.hint) TextView hint;
+
     GPSTracker gps;
     private ControlPoint currentPoint;
     private int initialPointId;
@@ -74,10 +80,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        ButterKnife.bind(this);
         timestampManager = new TimestampManager();
         initializeMap();
-
-
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +97,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         java.util.Date date = new java.util.Date();
                         Timestamp now = new Timestamp(date.getTime());
                         SetGameStartTimeTask task = new SetGameStartTimeTask(getApplicationContext(), new String[]{gameId,
-                                Long.toString(now.getTime())});//.execute(gameId, Long.toString(now.getTime()));
+                                Long.toString(now.getTime())});
                         task.runVolley();
                         /* zaczynamy wysyłanie współrzędnych na serwer i zaczynamy iterację */
                         startSendingCurrentLocationTask();
@@ -157,7 +162,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         },Integer.toString(currentPoint.getId()));
         gqt.runVolley();
-        //.execute(Integer.toString(currentPoint.getId()));
     }
 
     public void showQuestionDialog(Question q) {
@@ -183,7 +187,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Timestamp now = new Timestamp(date.getTime());
                             /* zapisujemy odwiedzenie punktu kontrolnego */
                             SaveReachedControlPointTask task = new SaveReachedControlPointTask(getApplicationContext(),
-                                    new String[]{Integer.toString(currentPoint.getId()), Long.toString(now.getTime())});//.execute(Integer.toString(currentPoint.getId()), Long.toString(now.getTime()));
+                                    new String[]{Integer.toString(currentPoint.getId()), Long.toString(now.getTime())});
                             task.runVolley();
                             progressDialog.setMessage("Pobieranie podpowiedzi");
                             progressDialog.show();
@@ -197,7 +201,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     }
                                 },Integer.toString(currentPoint.getNext_point_id()));//
                                 gcpt.runVolley();
-                                // .execute(Integer.toString(currentPoint.getNext_point_id()));
                             } else {
                                 /* jeśli ostatni to koniec gry */
                                 progressDialog.dismiss();
@@ -209,12 +212,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 SetGameEndTimeTask task3 = new SetGameEndTimeTask(getApplicationContext(), new String[]{gameId, Long.toString(now2.getTime())}, new OnEndTimeSet() {
                                     @Override
                                     public void onEndTime() {
-                                        SetGameAsPlayedTask task2 = new SetGameAsPlayedTask(getApplicationContext(), gameId);//.execute(gameId);
+                                        SetGameAsPlayedTask task2 = new SetGameAsPlayedTask(getApplicationContext(), gameId);
                                         task2.runVolley();
 
                                         showFinishedGameDialog();
                                     }
-                                });//.execute(gameId, Long.toString(now2.getTime()));
+                                });
                                 task3.runVolley();
                             }
                             /* jeśli odpowiedzieliśmy źle to nic się nie dzieje */
@@ -272,7 +275,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 dialog.show();
             }
         }, gameId);
-        task.runVolley();//.execute(gameId);
+        task.runVolley();
 
     }
 
@@ -292,10 +295,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(yourLocation);
         gps = new GPSTracker(MapsActivity.this);
         mHandler = new Handler();
-        start = (Button) findViewById(R.id.start);
-        abort = (Button) findViewById(R.id.abort);
-        exit = (Button) findViewById(R.id.exit);
-        hint = (TextView) findViewById(R.id.hint);
         abort.setVisibility(View.INVISIBLE);
         hint.setVisibility(View.INVISIBLE);
         /* jak zachowują się markery */

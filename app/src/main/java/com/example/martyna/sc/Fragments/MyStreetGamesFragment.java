@@ -15,11 +15,14 @@ import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetMyGamesFromServerTask;
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MyStreetGamesFragment extends Fragment implements UpdateFragmentInterface {
 
-    ListView listView;
+    @Bind(R.id.listView) ListView listView;
     private ArrayList<StreetGame> list = new ArrayList<>();
-    TextView noGames;
+    @Bind(R.id.noGames) TextView noGames;
 
     public MyStreetGamesFragment() {
     }
@@ -34,8 +37,7 @@ public class MyStreetGamesFragment extends Fragment implements UpdateFragmentInt
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_mygames, container, false);
-        listView = (ListView) rootView.findViewById(R.id.listView);
-        noGames = (TextView) rootView.findViewById(R.id.noGames);
+        ButterKnife.bind(this, rootView);
         noGames.setVisibility(View.INVISIBLE);
         updateFragment();
         return rootView;

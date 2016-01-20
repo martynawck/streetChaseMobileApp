@@ -16,12 +16,16 @@ import com.example.martyna.sc.R;
 import com.example.martyna.sc.Tasks.GetMyCompletedStreetGamesServerTask;
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MyCompletedStreetGamesFragment extends Fragment implements UpdateFragmentInterface {
 
-    ListView listView;
+    @Bind(R.id.listView)ListView listView;
+    @Bind(R.id.noGames)TextView noGames;
     private ArrayList<StreetGame> list = new ArrayList<>();
     ProgressDialog progressDialog;
-    TextView noGames;
+
 
     public MyCompletedStreetGamesFragment() {
     }
@@ -35,8 +39,7 @@ public class MyCompletedStreetGamesFragment extends Fragment implements UpdateFr
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mygames, container, false);
-        listView = (ListView) rootView.findViewById(R.id.listView);
-        noGames = (TextView) rootView.findViewById(R.id.noGames);
+        ButterKnife.bind(this, rootView);
         noGames.setVisibility(View.INVISIBLE);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Ładowanie gry");
